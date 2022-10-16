@@ -1,1 +1,1 @@
-# COMS6156_Final_Project
+# COMS6156_Cloud_Computing_Final_Project
