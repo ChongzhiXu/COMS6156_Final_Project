@@ -37,17 +37,17 @@ public class FileController {
     private ServletContext servletContext;
 
     @GetMapping(value = "/mysql/execute")
-    public String mysql_execute(HttpServletRequest request, @RequestParam("passcode") String passcode, @RequestParam("sql") String sql) {
+    public String mysql_execute(HttpServletRequest request) {
 
         String result = "Fail to execute!";
 
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        String DB_URL = "jdbc:mysql://localhost:3306/amazon_lab126?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String DB_URL = "jdbc:mysql://localhost:3306/microService_2?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
         // 数据库的用户名与密码，需要根据自己的设置
         String USER = "root";
-        String PASS = "dbuserdbuser";
+        String PASS = "Xcz990208";
 
         Connection conn = null;
         Statement stmt = null;
@@ -61,14 +61,19 @@ public class FileController {
 
             stmt = conn.createStatement();
 
+            String sql_1 = "select * from microService_2.Market_Groups limit 1";
 
-            stmt.execute(sql);
-
+            ResultSet rs = stmt.executeQuery(sql_1);
+            // 展开结果集数据库
+            while(rs.next()){
+                String res = rs.getString("market_group_name");
+                result = res;
+            }
 
             stmt.close();
             conn.close();
 
-            return "Successfully execute!";
+
         }catch(SQLException se){
             // 处理 JDBC 错误
             se.printStackTrace();
