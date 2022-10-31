@@ -36,14 +36,14 @@ public class FileController {
     @Autowired
     private ServletContext servletContext;
 
-    @GetMapping(value = "/mysql/execute")
-    public String mysql_execute(HttpServletRequest request) {
+    @GetMapping(value = "/micro3/mysql/execute")
+    public List<Double[]> mysql_execute(HttpServletRequest request, @RequestParam("type_id") String type_id) {
 
-        String result = "Fail to execute!";
+        List<Double[]> result = new ArrayList<>();
 
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        String DB_URL = "jdbc:mysql://localhost:3306/microService_2?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String DB_URL = "jdbc:mysql://localhost:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
         // 数据库的用户名与密码，需要根据自己的设置
         String USER = "root";
@@ -61,13 +61,17 @@ public class FileController {
 
             stmt = conn.createStatement();
 
-            String sql_1 = "select * from microService_2.Market_Groups limit 1";
+            String sql_1 = "select * from microService_3.Market_History where type_id = " + type_id;
 
             ResultSet rs = stmt.executeQuery(sql_1);
             // 展开结果集数据库
             while(rs.next()){
-                String res = rs.getString("market_group_name");
-                result = res;
+                Double highest = rs.getDouble("highest");
+                Double lowest = rs.getDouble("lowest");
+                Double average = rs.getDouble("average");
+
+
+                result.add(new Double[] {highest, lowest, average});
             }
 
             stmt.close();

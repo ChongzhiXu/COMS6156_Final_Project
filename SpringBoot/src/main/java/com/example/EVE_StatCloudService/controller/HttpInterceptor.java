@@ -43,12 +43,7 @@ public class HttpInterceptor implements HandlerInterceptor {
 
 
         if ("".equals(uri) || "/".equals(uri) || "/home.html".equals(uri)) {
-            if (true) {
-                uri = "/home.html";
-            }
-            else {
-                uri = "/login.html";
-            }
+            uri = "/home.html";
         }
 
 
