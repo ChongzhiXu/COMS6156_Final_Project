@@ -70,7 +70,6 @@ public class FileController {
                 Double lowest = rs.getDouble("lowest");
                 Double average = rs.getDouble("average");
 
-
                 result.add(new Double[] {highest, lowest, average});
             }
 
@@ -98,20 +97,19 @@ public class FileController {
         }
         return result;
     }
-    @GetMapping(value = "/mysql/executeQuery")
+    @GetMapping(value = "/micro3/mysql/execute")
     public String mysql_executeQuery(HttpServletRequest request, @RequestParam("sql") String sql) {
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        String DB_URL = "jdbc:mysql://localhost:3306/amazon_lab126?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String DB_URL = "jdbc:mysql://localhost:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
         // 数据库的用户名与密码，需要根据自己的设置
         String USER = "root";
-        String PASS = "dbuserdbuser";
+        String PASS = "Xcz990208";
 
 
         Connection conn = null;
         Statement stmt = null;
-        ResultSet rs = null;
         String result = "Fail to execute this query!";
 
         try{
@@ -123,9 +121,10 @@ public class FileController {
 
             stmt = conn.createStatement();
 
+            String sql_2 = sql;
 
-            rs = stmt.executeQuery(sql);
-
+            ResultSet rs2 = stmt.executeQuery(sql_2);
+            // 展开结果集数据库
 
             stmt.close();
             conn.close();
@@ -151,5 +150,4 @@ public class FileController {
         }
         return result;
     }
-
 }
