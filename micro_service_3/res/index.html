@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script type="text/javascript" src="index.js"></script>
+
+        <!-- Shortcut icon -->
+        <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/901/901787.png">
+
+        <title>eveMarketHistory</title>
+    </head>
+    <body>
+        <div class="row mb-5">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <!-- nav bar -->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">EVE Market History</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    More Services
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="http://3.133.83.203:5012/marketorders">Market Orders</a>
+                                    <a class="dropdown-item" href="#">Market Map</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <!-- item price trend search -->
+        <div class="container-fluid" id="item-price-search">
+
+            <h3 style="text-align: center">Item Price Trend Search</h3>
+
+            <div class="row mb-3">
+                <div class="col-md-1"></div>
+                <div class="input-group mb-3 col-md-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Item Type ID</span>
+                    </div>
+                    <input type="text" class="form-control" id="type-id" placeholder="Integer" aria-label="type-id" aria-describedby="type-id" required>
+                </div>
+
+                <div class="input-group mb-3 col-md-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Region ID</span>
+                    </div>
+                    <input type="text" class="form-control" id="region-id" placeholder="8 bits Region ID" aria-label="region-id" aria-describedby="region-id">
+                </div>
+
+                <div class="input-group mb-3 col-md-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Date</span>
+                    </div>
+                    <input type="text" class="form-control" id="date" placeholder="Format:xxxx-xx-xx" aria-label="date" aria-describedby="date">
+                </div>
+                <button type="button" class="btn btn-primary col-md-1" id="trend-search" style="height: 38px" onclick="search()">Search</button>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+
+        <!-- item order search -->
+        <div class="container-fluid" id="item-order-search" style="display: none">
+
+            <h3 style="text-align: center">Item Transaction Search</h3>
+
+            <div class="row mb-3">
+                <div class="col-md-4"></div>
+                <div class="input-group mb-3 col-md-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Item Type ID</span>
+                    </div>
+                    <input type="text" class="form-control" id="order-type-id" placeholder="Integer" aria-label="order-type-id" aria-describedby="order-type-id" required>
+                </div>
+                <button type="button" class="btn btn-primary col-md-1" id="order-search" style="height: 38px">Search</button>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+        <!-- search type select -->
+        <div class="text-center mb-3">
+            <div class="btn-group" role="group" aria-label="search-select">
+                <button type="button" onclick="showSelection(1)" class="btn btn-secondary" id="select-trend">Item Price Trend Search</button>
+                <button type="button" onclick="showSelection(2)" class="btn btn-secondary" id="select-transaction">Item Transaction Search</button>
+            </div>
+        </div>
+
+        <!-- result area -->
+        <div class="container-fluid row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="trend-result">
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="container-fluid row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="transaction-result">
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    </body>
+</html>
