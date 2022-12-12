@@ -1,6 +1,7 @@
 function showSelection(a) {
     $("#trend-result").empty();
     $("#order_transaction_table").empty();
+    $("#transaction_table").empty();
     if (a === 1){
         let x = document.getElementById("item-price-search");
         let y = document.getElementById("item-order-search");
