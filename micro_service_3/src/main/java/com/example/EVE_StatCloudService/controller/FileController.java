@@ -90,7 +90,7 @@ public class FileController {
         return result;
     }
     @GetMapping(value = "/mysql/executeQuery")
-    public List<String> mysql_executeQuery(HttpServletRequest request, @RequestParam("sql") String sql) {
+    public List<List> mysql_executeQuery(HttpServletRequest request, @RequestParam("sql") String sql) {
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
         String DB_URL = "jdbc:mysql://localhost:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
@@ -103,7 +103,7 @@ public class FileController {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
-        List<String> result = new ArrayList<>();
+        List<List> result = new ArrayList<>();
 
         try{
             // 注册 JDBC 驱动
@@ -118,7 +118,19 @@ public class FileController {
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                result.add(rs.getString("type_id"));
+                List<String> currentLine = new ArrayList<>();
+                currentLine.add(rs.getString("order_id"));
+                currentLine.add(rs.getString("region_id"));
+                currentLine.add(rs.getString("type_id"));
+                currentLine.add(rs.getString("date"));
+                currentLine.add(rs.getString("highest"));
+                currentLine.add(rs.getString("lowest"));
+                currentLine.add(rs.getString("average"));
+                currentLine.add(rs.getString("order_count"));
+                currentLine.add(rs.getString("volume"));
+
+                result.add(currentLine);
+
             }
 
             stmt.close();
