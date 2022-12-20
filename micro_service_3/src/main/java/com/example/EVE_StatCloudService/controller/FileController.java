@@ -43,11 +43,11 @@ public class FileController {
 
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        String DB_URL = "jdbc:mysql://localhost:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String DB_URL = "jdbc:mysql://database-lol.chy7cu9rusdl.us-east-2.rds.amazonaws.com:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
         // 数据库的用户名与密码，需要根据自己的设置
-        String USER = "root";
-        String PASS = "Xcz990208";
+        String USER = "admin";
+        String PASS = "team_lol";
 
         Connection conn = null;
         Statement stmt = null;
