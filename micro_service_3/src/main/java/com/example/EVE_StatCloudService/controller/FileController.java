@@ -37,17 +37,17 @@ public class FileController {
     private ServletContext servletContext;
 
     @GetMapping(value = "/mysql/execute")
-    public String mysql_execute(HttpServletRequest request, @RequestParam("passcode") String passcode, @RequestParam("sql") String sql) {
+    public String mysql_execute(HttpServletRequest request, @RequestParam("sql") String sql) {
 
-        String result = "Fail to execute!";
+        String result = "Fail to execute! There are some errors!";
 
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        String DB_URL = "jdbc:mysql://localhost:3306/amazon_lab126?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String DB_URL = "jdbc:mysql://localhost:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
         // 数据库的用户名与密码，需要根据自己的设置
         String USER = "root";
-        String PASS = "dbuserdbuser";
+        String PASS = "Xcz990208";
 
         Connection conn = null;
         Statement stmt = null;
@@ -68,7 +68,7 @@ public class FileController {
             stmt.close();
             conn.close();
 
-            return "Successfully execute!";
+            return "Successfully execute! Check your item info in the home search box!";
         }catch(SQLException se){
             // 处理 JDBC 错误
             se.printStackTrace();
@@ -93,11 +93,11 @@ public class FileController {
     public List<List> mysql_executeQuery(HttpServletRequest request, @RequestParam("sql") String sql) {
 
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-        String DB_URL = "jdbc:mysql://localhost:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String DB_URL = "jdbc:mysql://database-lol.chy7cu9rusdl.us-east-2.rds.amazonaws.com:3306/microService_3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 
         // 数据库的用户名与密码，需要根据自己的设置
-        String USER = "root";
-        String PASS = "Xcz990208";
+        String USER = "admin";
+        String PASS = "team_lol";
 
 
         Connection conn = null;
@@ -157,5 +157,7 @@ public class FileController {
         }
         return result;
     }
+
+
 
 }
