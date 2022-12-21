@@ -53,7 +53,7 @@ function func (a) {
         sql = "INSERT INTO microService_3.Market_History (order_id,region_id,type_id,date,highest,lowest,average,order_count,volume) VALUES (" + order_id + "," + region_id + "," + type_id + ",'" + date + "'," + highest + "," + lowest + "," + average + "," + order_count + "," + volume + ");";
         console.log(sql);
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/execute?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/execute?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");
@@ -67,7 +67,7 @@ function func (a) {
         let sql = "";
         sql = "DELETE FROM microService_3.Market_History WHERE order_id="+ order_id +";";
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/execute?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/execute?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");
@@ -91,7 +91,7 @@ function func (a) {
 
         console.log(sql);
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/execute?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/execute?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");

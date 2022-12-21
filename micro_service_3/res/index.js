@@ -31,7 +31,7 @@ function search_trend() {
         console.log("All information search")
         sql = "select * from microService_3.Market_History where type_id = " + type_id + " and region_id = " + region_id + " and date = '" + date + "'";
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/executeQuery?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/executeQuery?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");
@@ -80,7 +80,7 @@ function search_trend() {
         console.log("Search in different region")
         sql = "select * from microService_3.Market_History where type_id = " + type_id + " and date = '" + date + "'";
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/executeQuery?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/executeQuery?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");
@@ -291,7 +291,7 @@ function search_trend() {
         console.log("Search date trend")
         sql = "select * from microService_3.Market_History where type_id = " + type_id + " and region_id = " + region_id;
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/executeQuery?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/executeQuery?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");
@@ -417,7 +417,7 @@ function search_trend() {
         console.log("Only type_id searched")
         sql = "select * from microService_3.Market_History where type_id = " + type_id;
         $.ajax({
-            url: "http://localhost:63300/api/general/mysql/executeQuery?sql="+sql,
+            url: "http://18.191.120.105:63300/api/general/mysql/executeQuery?sql="+sql,
             type: "GET",
             error: function () {
                 alert("Sorry! Some error happened");
@@ -543,7 +543,7 @@ function search_transaction() {
     let type_id = document.getElementById("order-type-id").value;
     let sql = "select * from microService_3.Market_History where type_id = " + type_id;
     $.ajax({
-        url: "http://localhost:63300/api/general/mysql/executeQuery?sql="+sql,
+        url: "http://18.191.120.105:63300/api/general/mysql/executeQuery?sql="+sql,
         type: "GET",
         error: function () {
             alert("Sorry! Some error happened");
