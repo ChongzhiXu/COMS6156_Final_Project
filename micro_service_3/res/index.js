@@ -119,7 +119,7 @@ function search_trend() {
                 }
 
                 $("#trend-result").empty();
-                $("#trend-result").append("<div id=\"region_price_info\" style=\"height:1000px; width: 100%\"></div>");
+                $("#trend-result").append("<div id=\"region_price_info\" style=\"height:500px; width: 100%\"></div>");
 
                 // draw the chart
                 var app = {};
@@ -330,7 +330,7 @@ function search_trend() {
                 }
 
                 $("#trend-result").empty();
-                $("#trend-result").append("<div id=\"date_price_info\" style=\"height:1000px; width: 100%\"></div>");
+                $("#trend-result").append("<div id=\"date_price_info\" style=\"height:500px; width: 100%\"></div>");
 
                 var chartDom = document.getElementById('date_price_info');
                 var myChart = echarts.init(chartDom);
@@ -483,7 +483,7 @@ function search_trend() {
                 // console.log(type_line_data);
 
                 $("#trend-result").empty();
-                $("#trend-result").append("<div id=\"region_date_info\" style=\"height:1000px; width: 100%\"></div>");
+                $("#trend-result").append("<div id=\"region_date_info\" style=\"height:500px; width: 100%\"></div>");
 
                 var chartDom = document.getElementById('region_date_info');
                 var myChart = echarts.init(chartDom);
